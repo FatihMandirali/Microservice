@@ -8,7 +8,7 @@ namespace ResAPI.Models
 {
     public class ReservationDTO
     {
-        public int Id { get; set; }
+        public int Id { get; set; } 
         public string BkgNumber { get; set; }
         public DateTime CheckinDate{ get; set; }
         public DateTime CheckoutDate{ get; set; }
