@@ -1,0 +1,46 @@
+version: "3.1"
+
+services:
+  s_api_gateway:
+	container_name: c_api_gateway
+	image: fthmndrli/apigateway
+	build:
+		context: .
+		dockerfile: ./Microservice/Dockerfile
+	ports:
+	    - 80:80
+	networks:
+		- micro_net
+		- in_net
+
+  s_contact_api:
+	container_name: c_contact_api
+	image: fthmndrli/contactapi
+	build:
+		context: .
+		dockerfile: ./Services/Contact/ContactAPI/Dockerfile
+	ports:
+		- 9000:9000
+	networks:
+		- in_net
+
+  s_res_api:
+	container_name: c_res_api
+	image: fthmndrli/resapi
+	build:
+		context: .
+		dockerfile: ./Services/Res/ResAPI/Dockerfile
+	ports:
+		- 9001:9001
+	networks:
+		- in_net
+
+
+
+
+networks:
+	in_net:
+		driver: overlay
+		internal: true
+	micro_net:
+		driver: bridge
